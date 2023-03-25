@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .chat-screen-background {
+    @apply bg-background;
+  }
+
+  .chat-screen-main-section {
+    @apply grid mx-auto min-h-screen;
+    @apply sm:w-11/12 md:w-10/12 lg:w-3/5;
+  }
+
+  .chat-screen-main-frame {
+    @apply bg-white;
+    @apply my-16 p-6;
+  }
+
+  .chat-screen-intro-header {
+    @apply text-cyan-800 font-medium text-lg;
+    @apply mt-1;
+  }
+
+  .chat-history {
+    @apply mt-10;
+    scroll-behavior: smooth;
+    max-width: 100%;
+    border-radius: 10px;
+    border-color: black;
+    height: 67%;
+  }
+
+  .chat-history p {
+    @apply my-3;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .chat-history-label {
+    @apply text-lg font-medium;
+  }
+
+  .clearfix {
+    overflow: auto;
+  }
+
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}

@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .login-screen-background {
+    @apply bg-background;
+  }
+
+  .login-screen-main-section {
+    @apply grid mx-auto min-h-screen max-w-lg min-w-fit;
+  }
+
+  .login-screen-main-frame {
+    @apply bg-white;
+    @apply p-6 place-self-center;
+  }
+
+  .login-screen-intro-header {
+    @apply text-cyan-800 font-medium text-lg;
+    @apply mt-1;
+  }
+
+  .login-screen-intro-paragraph {
+    @apply text-lg font-medium;
+    @apply mt-10;
+  }
+
+  .login-screen-form {
+    @apply mt-14;
+    @apply flex flex-col;
+  }
+
+  .form-label {
+    @apply text-black;
+    @apply text-base font-semibold leading-6;
+  }
+
+  .form-input {
+    @apply text-base;
+    @apply mt-2 py-1 pl-3 mr-2;
+    @apply outline-none
+              focus:border-blue-500
+              focus:ring-blue-500
+              focus:invalid:border-red-500 focus:invalid:ring-red-500;
+  }
+
+  .form-error {
+    @apply text-red-500 text-sm;
+    @apply my-3 px-3;
+  }
+
+  .form-button {
+    @apply mt-4;
+    @apply ml-auto;
+    @apply h-12 w-32;
+    @apply bg-submit;
+    @apply border-submit;
+    @apply text-white uppercase font-bold;
+    @apply rounded;
+    border-radius: 12px;
+  }
+}
