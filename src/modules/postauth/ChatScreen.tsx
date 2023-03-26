@@ -15,37 +15,24 @@ type MessageData = {
 };
 
 function ThreeDotsLine() {
-  const lineStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: "28px",
-  };
-  const dotStyle: React.CSSProperties = {
-    width: "8px",
-    height: "8px",
-    borderRadius: "50%",
-    backgroundColor: "#085474",
-    margin: "0 12px",
-  };
+  const dotClassName = "w-2 h-2 rounded-full bg-nets-color mx-5";
   return (
-    <div style={lineStyle}>
-      <div style={dotStyle}></div>
-      <div style={dotStyle}></div>
-      <div style={dotStyle}></div>
+    <div className="flex items-center justify-center mb-7">
+      <div className={dotClassName}></div>
+      <div className={dotClassName}></div>
+      <div className={dotClassName}></div>
     </div>
   );
 }
 
 function Message({ messageData }: { messageData: MessageData }) {
   const { username } = useAuth();
-  const sharedClassName = "w-fit mx-4 my-2 p-2 rounded-lg clearfix";
   const { text, isSystemMessage } = messageData.message;
   function renderTextComponentHelper() {
     if (isSystemMessage) {
       return (
         <div
-          className={`bg-yellow-300 ${sharedClassName}`}
+          className={`bg-yellow-300 chat-history-message`}
         >{`System: ${text} `}</div>
       );
     }
@@ -53,14 +40,14 @@ function Message({ messageData }: { messageData: MessageData }) {
 
     if (receivedUsername === username) {
       return (
-        <div className={`float-right bg-blue-300 ${sharedClassName}`}>
+        <div className={`float-right bg-blue-300 chat-history-message`}>
           {receivedMessage}
         </div>
       );
     }
 
     return (
-      <div className={`bg-gray-300 ${sharedClassName}`}>
+      <div className={`bg-gray-300 chat-history-message`}>
         {receivedUsername}: {receivedMessage}
       </div>
     );
@@ -121,33 +108,19 @@ function SendMessageSection() {
   }
 
   return (
-    <div
-      className="flex justify-between"
-      style={{
-        bottom: "0px",
-      }}
-    >
+    <div className="flex justify-between">
       <textarea
-        className="flex-grow m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 resize-none"
+        className="flex-grow chat-send-message-textarea outline-none"
         rows={1}
         placeholder="Message..."
-        style={{
-          outline: "none",
-        }}
         value={message}
         onChange={(event) => {
           setMessage(event.target.value);
         }}
       />
-      <button
-        className="m-2"
-        style={{
-          outline: "none",
-        }}
-        onClick={handleSubmit}
-      >
+      <button className="m-2 outline-none" onClick={handleSubmit}>
         <svg
-          className="svg-inline--fa text-blue-600 fa-paper-plane fa-w-16 w-6 h-6 py-2 mr-2"
+          className="chat-send-message-button-svg"
           aria-hidden="true"
           focusable="false"
           data-prefix="fas"
@@ -170,6 +143,7 @@ function LogoutButton() {
   const { logout } = useAuth();
   return (
     <button
+      className="outline-none"
       title="Logout"
       onClick={() => {
         if (window.confirm("Do you wish to logout")) {
@@ -178,11 +152,7 @@ function LogoutButton() {
       }}
     >
       <svg
-        className="svg-inline--fa fa-paper-plane fa-w-16 w-6 h-6 py-2 mr-2"
-        style={{
-          color: "#085474",
-        }}
-        width="40px"
+        className="chat-logout-button-svg"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 384.971 384.971"
       >
@@ -215,16 +185,10 @@ export function ChatScreen() {
   });
 
   return (
-    <div className="chat-screen-background">
-      <div className="chat-screen-main-section">
-        <div className="chat-screen-main-frame">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+    <div className="bg-nets-color">
+      <div className="chat-main-section">
+        <div className="chat-main-frame">
+          <div className="flex flex-row justify-between">
             <div>
               <img
                 height={"40px"}
@@ -232,13 +196,11 @@ export function ChatScreen() {
                 src={NetsLogo}
                 alt="Nets logo"
               />
-              <div className="chat-screen-intro-header">Global group chat</div>
+              <div className="chat-intro-header">Global group chat</div>
             </div>
             <LogoutButton />
           </div>
-          <div className="mt-6 font-medium text-lg">
-            Logged in as {username}
-          </div>
+          <div className="chat-login-as-info">Logged in as {username}</div>
           <History messages={messages} />
           <SendMessageSection />
         </div>

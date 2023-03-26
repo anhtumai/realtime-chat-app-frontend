@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#085474",
-        submit: "#007bc7",
+        "nets-color": "#085474",
+        "submit-color": "#007bc7",
       },
     },
   },

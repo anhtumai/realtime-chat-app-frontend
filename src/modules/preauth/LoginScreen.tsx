@@ -59,20 +59,18 @@ export function LoginScreen() {
   });
 
   return (
-    <div className="login-screen-background">
-      <div className="login-screen-main-section">
-        <div className="login-screen-main-frame">
+    <div className="bg-nets-color">
+      <div className="login-main-section">
+        <div className="login-main-frame">
           <img
             height={"40px"}
             id="defaultLogo"
             src={NetsLogo}
             alt="Nets logo"
           />
-          <div className="login-screen-intro-header">
-            Connect to the group chat
-          </div>
+          <div className="login-intro-header">Connect to the group chat</div>
 
-          <div className="login-screen-intro-paragraph">
+          <div className="login-intro-paragraph">
             Welcome!
             <br />
             Please insert your username and location for your account to
@@ -80,7 +78,7 @@ export function LoginScreen() {
           </div>
 
           <div>
-            <form onSubmit={onSubmit} className="login-screen-form">
+            <form onSubmit={onSubmit} className="login-form">
               <label className="form-label">Username</label>
               <input className="form-input" {...register("username")} />
               <p className="form-error">{errors?.username?.message}</p>

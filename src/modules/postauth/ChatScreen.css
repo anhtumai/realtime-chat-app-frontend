@@ -2,54 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .chat-screen-background {
-    @apply bg-background;
-  }
+.chat-main-section {
+  @apply grid mx-auto min-h-screen;
+  @apply sm:w-11/12 md:w-10/12 lg:w-3/5;
+}
 
-  .chat-screen-main-section {
-    @apply grid mx-auto min-h-screen;
-    @apply sm:w-11/12 md:w-10/12 lg:w-3/5;
-  }
+.chat-main-frame {
+  @apply my-16 p-6;
+  @apply bg-white;
+}
 
-  .chat-screen-main-frame {
-    @apply bg-white;
-    @apply my-16 p-6;
-  }
+.chat-intro-header {
+  @apply mt-1;
+  @apply text-cyan-800 font-medium text-lg;
+}
 
-  .chat-screen-intro-header {
-    @apply text-cyan-800 font-medium text-lg;
-    @apply mt-1;
-  }
+.chat-login-as-info {
+  @apply mt-6;
+  @apply font-medium text-lg;
+}
 
-  .chat-history {
-    @apply mt-10;
-    scroll-behavior: smooth;
-    max-width: 100%;
-    border-radius: 10px;
-    border-color: black;
-    height: 67%;
-  }
+.chat-logout-button-svg {
+  @apply py-2 mr-2;
+  @apply w-6 h-6;
+  @apply text-nets-color;
+}
 
-  .chat-history p {
-    @apply my-3;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
+.chat-history {
+  @apply mt-10;
+  @apply max-w-full h-2/3;
+  scroll-behavior: smooth;
+}
 
-  .chat-history-label {
-    @apply text-lg font-medium;
-  }
+.chat-history p {
+  @apply my-3;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 
-  .clearfix {
-    overflow: auto;
-  }
+.chat-history-label {
+  @apply text-lg font-medium;
+}
 
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+.chat-history-message {
+  @apply w-fit mx-4 my-2 p-2 rounded-lg clearfix;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.chat-send-message-textarea {
+  @apply py-2 px-4 m-2 mr-1;
+  @apply rounded-full border border-gray-300 bg-gray-200 resize-none;
+}
+
+.chat-send-message-button-svg {
+  @apply py-2 mr-2;
+  @apply w-6 h-6;
+  @apply text-blue-600;
 }
