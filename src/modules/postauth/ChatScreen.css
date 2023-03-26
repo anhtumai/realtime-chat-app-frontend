@@ -26,8 +26,9 @@
 
 .chat-history {
   @apply mt-10;
-  @apply max-w-full h-2/3;
+  @apply max-w-full;
   scroll-behavior: smooth;
+  height: 56vh;
 }
 
 .chat-history p {
