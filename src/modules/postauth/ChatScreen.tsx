@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import useWebSocket from "react-use-websocket";
 import { WS_URL } from "../../config";
 
@@ -174,6 +174,35 @@ function SendMessageSection({ username }: { username: string }) {
   );
 }
 
+function LogoutButton() {
+  return (
+    <button title="Logout">
+      <svg
+        className="svg-inline--fa fa-paper-plane fa-w-16 w-6 h-6 py-2 mr-2"
+        style={{
+          color: "#085474",
+        }}
+        width="40px"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384.971 384.971"
+      >
+        <path
+          fill="currentColor"
+          d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03
+			C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03
+			C192.485,366.299,187.095,360.91,180.455,360.91z"
+        />
+        <path
+          fill="currentColor"
+          d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279
+			c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179
+			c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"
+        />
+      </svg>
+    </button>
+  );
+}
+
 export function ChatScreen({ username }: { username: string }) {
   const [messages, setMessages] = useState<MessageData[]>([]);
   useWebSocket(WS_URL, {
@@ -188,13 +217,27 @@ export function ChatScreen({ username }: { username: string }) {
     <div className="chat-screen-background">
       <div className="chat-screen-main-section">
         <div className="chat-screen-main-frame">
-          <img
-            height={"40px"}
-            id="defaultLogo"
-            src={NetsLogo}
-            alt="Nets logo"
-          />
-          <div className="chat-screen-intro-header">Global group chat</div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <img
+                height={"40px"}
+                id="defaultLogo"
+                src={NetsLogo}
+                alt="Nets logo"
+              />
+              <div className="chat-screen-intro-header">Global group chat</div>
+            </div>
+            <LogoutButton />
+          </div>
+          <div className="mt-6 font-medium text-lg">
+            Logged in as {username}
+          </div>
           <History messages={messages} username={username} />
           <SendMessageSection username={username} />
         </div>
