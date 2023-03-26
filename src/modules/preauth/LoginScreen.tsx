@@ -91,6 +91,7 @@ export function LoginScreen() {
                 style={{
                   marginLeft: "auto",
                 }}
+                value={"Connect"}
               />
             </form>
           </div>
