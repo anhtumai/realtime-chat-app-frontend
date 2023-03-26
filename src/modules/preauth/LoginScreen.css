@@ -48,6 +48,7 @@
   .form-error {
     @apply text-red-500 text-sm;
     @apply my-3 px-3;
+    @apply h-2;
   }
 
   .form-button {

@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-
 import { LoginScreen } from "./modules/preauth/LoginScreen";
 
-import "./App.css";
 import { ChatScreen } from "./modules/postauth/ChatScreen";
 import useAuth, { AuthProvider } from "./contexts/auth";
 
