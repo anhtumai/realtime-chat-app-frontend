@@ -4,13 +4,13 @@ import { ChatScreen } from "./modules/postauth/ChatScreen";
 import useAuth, { AuthProvider } from "./contexts/auth";
 
 function App() {
-  const { username } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  if (username === "") {
-    return <LoginScreen />;
+  if (isAuthenticated()) {
+    return <ChatScreen />;
   }
 
-  return <ChatScreen />;
+  return <LoginScreen />;
 }
 
 function AuthProviderWrapper() {

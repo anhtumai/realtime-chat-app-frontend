@@ -48,6 +48,7 @@
 
 .chat-history-message {
   @apply w-fit mx-4 my-2 p-2 rounded-lg clearfix;
+  white-space: pre;
 }
 
 .clearfix {
