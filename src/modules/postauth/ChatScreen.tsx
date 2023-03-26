@@ -5,6 +5,7 @@ import { WS_URL } from "../../config";
 import NetsLogo from "../../assets/nets_logo.png";
 
 import "./ChatScreen.css";
+import useAuth from "../../contexts/auth";
 
 type MessageData = {
   message: {
@@ -36,13 +37,8 @@ function ThreeDotsLine() {
   );
 }
 
-function Message({
-  messageData,
-  username,
-}: {
-  messageData: MessageData;
-  username: string;
-}) {
+function Message({ messageData }: { messageData: MessageData }) {
+  const { username } = useAuth();
   const sharedClassName = "w-fit mx-4 my-2 p-2 rounded-lg clearfix";
   const { text, isSystemMessage } = messageData.message;
   function renderTextComponentHelper() {
@@ -73,13 +69,7 @@ function Message({
   return <div className="clearfix">{renderTextComponentHelper()}</div>;
 }
 
-function History({
-  messages,
-  username,
-}: {
-  messages: MessageData[];
-  username: string;
-}) {
+function History({ messages }: { messages: MessageData[] }) {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -100,7 +90,7 @@ function History({
         }}
       >
         {messages.map((messageData, index) => (
-          <Message key={index} messageData={messageData} username={username} />
+          <Message key={index} messageData={messageData} />
         ))}
         <div ref={messagesEndRef}></div>
       </div>
@@ -108,7 +98,9 @@ function History({
   );
 }
 
-function SendMessageSection({ username }: { username: string }) {
+function SendMessageSection() {
+  const { username } = useAuth();
+
   const { sendJsonMessage } = useWebSocket(WS_URL);
 
   const [message, setMessage] = useState("");
@@ -175,8 +167,16 @@ function SendMessageSection({ username }: { username: string }) {
 }
 
 function LogoutButton() {
+  const { logout } = useAuth();
   return (
-    <button title="Logout">
+    <button
+      title="Logout"
+      onClick={() => {
+        if (window.confirm("Do you wish to logout")) {
+          logout();
+        }
+      }}
+    >
       <svg
         className="svg-inline--fa fa-paper-plane fa-w-16 w-6 h-6 py-2 mr-2"
         style={{
@@ -203,7 +203,8 @@ function LogoutButton() {
   );
 }
 
-export function ChatScreen({ username }: { username: string }) {
+export function ChatScreen() {
+  const { username } = useAuth();
   const [messages, setMessages] = useState<MessageData[]>([]);
   useWebSocket(WS_URL, {
     onMessage: (event) => {
@@ -238,8 +239,8 @@ export function ChatScreen({ username }: { username: string }) {
           <div className="mt-6 font-medium text-lg">
             Logged in as {username}
           </div>
-          <History messages={messages} username={username} />
-          <SendMessageSection username={username} />
+          <History messages={messages} />
+          <SendMessageSection />
         </div>
       </div>
     </div>

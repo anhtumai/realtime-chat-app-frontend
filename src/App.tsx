@@ -4,15 +4,24 @@ import { LoginScreen } from "./modules/preauth/LoginScreen";
 
 import "./App.css";
 import { ChatScreen } from "./modules/postauth/ChatScreen";
+import useAuth, { AuthProvider } from "./contexts/auth";
 
 function App() {
-  const [username, setUsername] = useState("");
+  const { username } = useAuth();
 
   if (username === "") {
-    return <LoginScreen setUsername={setUsername} />;
+    return <LoginScreen />;
   }
 
-  return <ChatScreen username={username} />;
+  return <ChatScreen />;
 }
 
-export default App;
+function AuthProviderWrapper() {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+}
+
+export default AuthProviderWrapper;

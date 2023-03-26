@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import useWebSocket, { ReadyState } from "react-use-websocket";
+import useWebSocket from "react-use-websocket";
 
 import { WS_URL } from "../../config";
+import useAuth from "../../contexts/auth";
 
 import "./LoginScreen.css";
 import NetsLogo from "./nets_logo.png";
@@ -11,11 +12,8 @@ type LoginFormData = {
   location: string;
 };
 
-export function LoginScreen({
-  setUsername,
-}: {
-  setUsername: (v: string) => void;
-}) {
+export function LoginScreen() {
+  const { setUsername } = useAuth();
   const {
     register,
     setValue,
