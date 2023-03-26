@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import useWebSocket from "react-use-websocket";
+
+import useAuth from "../../contexts/auth";
 import { WS_URL } from "../../config";
 
+import "./ChatScreen.css";
 import NetsLogo from "../../assets/nets_logo.png";
 
-import "./ChatScreen.css";
-import useAuth from "../../contexts/auth";
-
+// Message Data format received from WebSocket server
 type MessageData = {
   message: {
     text: string;
@@ -63,6 +64,9 @@ function History({ messages }: { messages: MessageData[] }) {
     (messagesEndRef.current as any).scrollIntoView({ behaviour: "smooth" });
   };
 
+  // because the chat messages are displayed in chronolical order,
+  // the latest message lies in the bottom, so the app needs to scroll to bottom
+  // whenever it receives new message.
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
@@ -85,6 +89,9 @@ function History({ messages }: { messages: MessageData[] }) {
   );
 }
 
+/*
+ * Component responsible for sending new message to WebSocket server
+ */
 function SendMessageSection() {
   const { username } = useAuth();
 

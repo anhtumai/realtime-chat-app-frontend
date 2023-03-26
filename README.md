@@ -2,6 +2,8 @@
 
 Realtime chat app based on WebSocket backend
 
+Backend repo: [Github repo](https://github.com/anhtumai/realtime-chat-app-backend)
+
 ## Usage
 
 Requirement:
@@ -17,8 +19,8 @@ yarn install
 ### Run on localhost
 
 ```bash
-# default value for REACT_APP_WS_URL is
-REACT_APP_WS_URL="" yarn run start
+# default value for REACT_APP_WS_URL is "ws://localhost:8080"
+REACT_APP_WS_URL="wss://example.com" yarn run start
 ```
 
 ### Build

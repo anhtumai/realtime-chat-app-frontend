@@ -1,5 +1,4 @@
 import { LoginScreen } from "./modules/preauth/LoginScreen";
-
 import { ChatScreen } from "./modules/postauth/ChatScreen";
 import useAuth, { AuthProvider } from "./contexts/auth";
 

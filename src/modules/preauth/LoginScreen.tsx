@@ -14,7 +14,7 @@ type LoginFormData = {
   location: string;
 };
 
-const schema = yup.object({
+const loginFormSchema = yup.object({
   username: yup
     .string()
     .min(5, "Username must have at least 5 characters")
@@ -42,7 +42,7 @@ export function LoginScreen() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginFormSchema),
   });
 
   const { sendJsonMessage } = useWebSocket(WS_URL);
