@@ -189,6 +189,7 @@ export function ChatScreen() {
       const messageData: MessageData = JSON.parse(event.data);
       setMessages([...messages, messageData]);
     },
+    shouldReconnect: () => true,
   });
 
   return (
