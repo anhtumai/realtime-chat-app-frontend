@@ -1,5 +1,5 @@
 .chat-main-section {
-  @apply grid mx-auto min-h-screen;
+  @apply mx-auto flex flex-col justify-center lg:h-screen md:min-h-screen sm:min-h-screen;
   @apply sm:w-11/12 md:w-10/12 lg:w-3/5;
 }
 
